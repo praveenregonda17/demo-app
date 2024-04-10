@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [data, setData] = useState([])
+  axios.get('https://countriesnow.space/api/v0.1/countries')
+  .then(function (response) {
+    setData(response.data.data)
+  })
+  .catch(function (error) {
+    setData([])
+  })
+  .finally(function () {
+  });
+  console.log('data', data)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     Demo Test App
+     <ul>
+      {data.map((item: any) => <li>{item.country}</li>)}
+      </ul>
     </div>
   );
 }
