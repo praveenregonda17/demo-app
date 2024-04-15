@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 function App() {
   const [data, setData] = useState([])
-  axios.get('https://countriesnow.space/api/v0.1/countries')
+  axios.get(`${process.env.REACT_APP_API_URL}/v0.1/countries`)
   .then(function (response) {
     setData(response.data.data)
   })
